@@ -29,8 +29,8 @@ class UserController {
         }
       })
       if (!user) throw { name: 'error_400_email_password_empty' }
-
       const comparePassword = compare(Password, user.Password)
+      console.log(comparePassword, Password, user.Password)
       if (!comparePassword) throw { name: 'error_400_wrong_email_password' }
 
       const access_token = generateToken({

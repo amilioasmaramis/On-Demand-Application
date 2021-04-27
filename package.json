@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "npx nodemon bin/http.js",
-    "test": "npx jest --detectOpenHandles --forceExit --runInBand --verbose --collectCoverage",
-    "dev": "set NODE_ENV=development&&npx nodemon bin/http.js",
+    "test": "set NODE_ENV=test&&npx jest --detectOpenHandles --forceExit --runInBand --verbose --collectCoverage",
+    "dev": "set NODE_ENV=development&&npx nodemon bin/http.js --env development",
     "sequelize-create-db-development": "npx sequelize db:create --env development",
     "sequelize-create-db-test": "npx sequelize db:create --env test",
     "sequelize-drop-db-development": "npx sequelize db:drop --env development",
@@ -14,6 +14,7 @@
     "sequelize-create-table-user": "npx sequelize model:generate --name User --attributes Username:string,Email:string,Password:string,Role:string,Orderan:array",
     "sequelize-create-table-order": "npx sequelize model:generate --name Order --attributes TitikAwal:array,TitikAkhir:array,Status:boolean,UserCustomerId:integer,UserDriverId:integer,Jarak:integer,TarifHarga:integer",
     "sequelize-db-migrate": "npx sequelize db:migrate",
+    "sequelize-db-migrate-test": "npx sequelize db:migrate --env test",
     "sequelize-undo-db-migrate": "npx sequelize db:migrate:undo:all",
     "sequelize-create-column-isdone-order": "npx sequelize migration:generate --name Add-Colum-IsDone-toOrder"
   },

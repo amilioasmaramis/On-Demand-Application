@@ -7,11 +7,11 @@ module.exports = (err, req, res, next) => {
   let message = 'Unexpected error.'
 
   switch (err.name) {
-    case 'SequelizeForeignKeyConstraintError':
-      statusCode = 400
-      errorCode = 'Validation error'
-      message = err.message
-      break
+    // case 'SequelizeForeignKeyConstraintError':
+    //   statusCode = 400
+    //   errorCode = 'Validation error'
+    //   message = err.message
+    //   break
 
     case 'SequelizeValidationError':
       statusCode = 400
@@ -23,11 +23,11 @@ module.exports = (err, req, res, next) => {
       message = ers
       break
 
-    case 'SequelizeUniqueConstraintError':
-      statusCode = 400
-      errorCode = 'Validation error'
-      message = err.errors[0].message
-      break
+    // case 'SequelizeUniqueConstraintError':
+    //   statusCode = 400
+    //   errorCode = 'Validation error'
+    //   message = err.errors[0].message
+    //   break
     
     case 'error_400_email_password_empty':
       statusCode = 400
@@ -51,18 +51,6 @@ module.exports = (err, req, res, next) => {
       statusCode = 404
       errorCode = 'Not Found'
       message = 'Requested user was not found'
-      break
-      
-    case 'error_403_user_forbidden':
-      statusCode = 403
-      errorCode = 'Forbidden access'
-      message = 'You cannot access this todo'
-      break
-
-    case 'error_400_body_invalid':
-      statusCode = 400
-      errorCode = 'Validation error'
-      message = 'Input invalid'
       break
 
     default:
