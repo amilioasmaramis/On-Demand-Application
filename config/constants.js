@@ -1,3 +1,9 @@
+'use strict'
+
+if (process.env.NODE_ENV != 'production') {
+  require('dotenv').config()
+}
+
 const DB_USERNAME_NAME = process.env.DB_DATABASE_NAME
 const DB_PASSWORD_NAME = process.env.DB_PASSWORD
 const DB_DATABASE_NAME = process.env.DB_DATABASE_NAME

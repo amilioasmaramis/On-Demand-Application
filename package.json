@@ -4,11 +4,18 @@
   "description": "Assignment API Framework - Postgres ",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon -r dotenv/config bin/http.js dotenv_config_path=.env.production",
+    "start": "npx nodemon bin/http.js",
     "test": "npx jest --detectOpenHandles --forceExit --runInBand --verbose --collectCoverage",
-    "dev": "npx nodemon -r dotenv/config bin/http.js dotenv_config_path=.env.development",
-    "prod": "npx nodemon -r dotenv/config bin/http.js dotenv_config_path=.env.production",
-    "sequelize-create-db": "npx sequelize db:create"
+    "dev": "set NODE_ENV=development&&npx nodemon bin/http.js",
+    "sequelize-create-db-development": "npx sequelize db:create --env development",
+    "sequelize-create-db-test": "npx sequelize db:create --env test",
+    "sequelize-drop-db-development": "npx sequelize db:drop --env development",
+    "sequelize-drop-db-test": "npx sequelize db:drop --env test",
+    "sequelize-create-table-user": "npx sequelize model:generate --name User --attributes Username:string,Email:string,Password:string,Role:string,Orderan:array",
+    "sequelize-create-table-order": "npx sequelize model:generate --name Order --attributes TitikAwal:array,TitikAkhir:array,Status:boolean,UserCustomerId:integer,UserDriverId:integer,Jarak:integer,TarifHarga:integer",
+    "sequelize-db-migrate": "npx sequelize db:migrate",
+    "sequelize-undo-db-migrate": "npx sequelize db:migrate:undo:all",
+    "sequelize-create-column-isdone-order": "npx sequelize migration:generate --name Add-Colum-IsDone-toOrder"
   },
   "repository": {
     "type": "git",
@@ -22,6 +29,7 @@
   "homepage": "https://github.com/amilioasmaramis/On-Demand-Application#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
