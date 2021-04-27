@@ -1,0 +1,47 @@
+{
+  "name": "on-demand-application",
+  "version": "1.0.0",
+  "description": "Assignment API Framework - Postgres ",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon bin/http.js",
+    "test": "set NODE_ENV=test&&npx jest --detectOpenHandles --forceExit --runInBand --verbose --collectCoverage",
+    "dev": "set NODE_ENV=development&&npx nodemon bin/http.js --env development",
+    "sequelize-create-db-development": "npx sequelize db:create --env development",
+    "sequelize-create-db-test": "npx sequelize db:create --env test",
+    "sequelize-drop-db-development": "npx sequelize db:drop --env development",
+    "sequelize-drop-db-test": "npx sequelize db:drop --env test",
+    "sequelize-create-table-user": "npx sequelize model:generate --name User --attributes Username:string,Email:string,Password:string,Role:string,Orderan:array",
+    "sequelize-create-table-order": "npx sequelize model:generate --name Order --attributes TitikAwal:array,TitikAkhir:array,Status:boolean,UserCustomerId:integer,UserDriverId:integer,Jarak:integer,TarifHarga:integer",
+    "sequelize-db-migrate": "npx sequelize db:migrate",
+    "sequelize-db-migrate-test": "npx sequelize db:migrate --env test",
+    "sequelize-undo-db-migrate": "npx sequelize db:migrate:undo:all",
+    "sequelize-create-column-isdone-order": "npx sequelize migration:generate --name Add-Colum-IsDone-toOrder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amilioasmaramis/On-Demand-Application.git"
+  },
+  "author": "Amilio Asmaramis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amilioasmaramis/On-Demand-Application/issues"
+  },
+  "homepage": "https://github.com/amilioasmaramis/On-Demand-Application#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.6.0",
+    "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "sequelize-cli": "^6.2.0",
+    "supertest": "^6.1.3"
+  }
+}
