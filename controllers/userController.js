@@ -64,8 +64,6 @@ class UserController {
           id: req.params.id
         }
       })
-      if (!order) throw { name: "error_404_order_not_found"}
-      
       let tmp = user.dataValues.Orderan
       const updateUser = await User.update({
         Orderan: tmp.concat(order)
@@ -75,6 +73,7 @@ class UserController {
         },
         returning: true
       })
+      if (updateUser[1].length === 0) throw { name: "error_404_order_not_found"}   
       console.log(updateUser[1][0])
       res.status(200).json(updateUser[1][0])
     } catch(err) {

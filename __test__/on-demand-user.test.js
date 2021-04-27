@@ -6,6 +6,7 @@ const { generateToken } = require('../helpers/jwt')
 let id;
 let access_token;
 let idUser;
+let idMission;
 
 beforeAll(async () => {
   // access_token = generateToken({
@@ -198,6 +199,7 @@ describe('POST /orders/', function () {
           expect(res.body).toHaveProperty("order")
           expect(typeof res.body).toEqual("object")
           id = res.body.order.id
+          idMission = res.body.order.id
           done()
         })
     })
@@ -326,7 +328,7 @@ describe('PUT Status IsDone Order /orders/IsDone/:id', function () {
   describe('Successful PUT Status IsDone Order /orders/IsDone/:id', function () {
     it('should return status 200 with data', function (done) {
       request(app)
-        .put(`/orders/IsDone/${id}`)
+        .put(`/orders/IsDone/${idMission}`)
         .set('access_token', access_token)
         .end((err, res) => {
           if (err) {
@@ -369,6 +371,36 @@ describe('PUT Status IsDone Order /orders/IsDone/:id', function () {
           }
           expect(res.status).toEqual(200)
           expect(typeof res.body).toEqual('object')
+          done()
+        })
+    })
+    // FAILED
+    it('Failed to update data orderan user with no access_token', function (done) {
+      request(app)
+        .put(`/users/${idUser}`)
+        // .set('access_token', access_token)
+        .end((err, res) => {
+          if (err) {
+            console.log('Error occured at Put status orders')
+          }
+          expect(res.status).toEqual(401)
+          expect(res.body).toHaveProperty('message')
+          expect(res.body).toHaveProperty('errorCode')
+          done()
+        })
+    })
+    // FAILED
+    it('Failed to update data orderan user with no data order', function (done) {
+      request(app)
+        .put(`/users/1111111`)
+        .set('access_token', access_token)
+        .end((err, res) => {
+          if (err) {
+            console.log('Error occured at Put status orders')
+          }
+          expect(res.status).toEqual(404)
+          expect(res.body).toHaveProperty('message')
+          expect(res.body).toHaveProperty('errorCode')
           done()
         })
     })
