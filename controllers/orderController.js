@@ -75,6 +75,7 @@ class OrderController {
         },
         returning: true
       })
+      if (order[1].length == 0) throw { name: "error_404_order_not_found" }
       res.status(200).json(order[1][0])
     } catch(err) {
       next(err)
@@ -93,6 +94,7 @@ class OrderController {
         },
         returning: true
       })
+      if (order[1].length == 0) throw { name: "error_404_order_not_found" }
       res.status(200).json(order[1][0])
     } catch(err) {
       next(err)

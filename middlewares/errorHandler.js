@@ -52,6 +52,12 @@ module.exports = (err, req, res, next) => {
       errorCode = 'Not Found'
       message = 'Requested user was not found'
       break
+    
+    case 'error_404_order_not_found':
+    statusCode = 404
+    errorCode = 'Not Found'
+    message = 'Requested order was not found'
+      break
 
     default:
       break
